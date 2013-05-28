@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
 
-import de.inovex.academy.android.server.dto.Credentials;
+import de.inovex.academy.android.server.dto.User;
 import de.inovex.academy.android.server.dto.Session;
 
 @Path("/login")
@@ -18,8 +18,9 @@ public class LoginResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String getMessage(String jsonCred) {
+		System.err.println(jsonCred);
 		Gson gson = new Gson();
-		Credentials cred = gson.fromJson(jsonCred, Credentials.class);
+		User cred = gson.fromJson(jsonCred, User.class);
 		
 		System.out.println(cred.getLogin());
 		Session session = new Session();

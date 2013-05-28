@@ -18,13 +18,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.Gson;
 
-import de.inovex.academy.android.server.dto.Credentials;
+import de.inovex.academy.android.server.dto.User;
 import de.inovex.academy.android.server.dto.Session;
 
 public class TestClient {
 	private static final String urlPrefix = "http://localhost:9998/";
 	private static final String user = "testuser";
-	private static final String password = "password";
 	private Gson gson = new Gson();
 
 	private Object postRequest(String verb, Object parameter) throws ClientProtocolException, IOException {
@@ -56,9 +55,8 @@ public class TestClient {
 	}
 	
 	public static void main(String[] args) {
-		Credentials cred = new Credentials();
-		cred.setLogin(user);
-		cred.setPassword(password);
+		User cred = new User();
+		cred.setLogin(user);	
 		
 		TestClient client = new TestClient();
 		

@@ -12,5 +12,4 @@ public class HelloWorldResource {
 	public String getMessage() {
 		return "Hello World";
 	}
-	
 }

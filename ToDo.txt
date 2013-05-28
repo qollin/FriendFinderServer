@@ -1,0 +1,3 @@
+-ohne passwort
+-aktuelle location vom user
+-liste der aktuellen location aller user -> JSON liste
