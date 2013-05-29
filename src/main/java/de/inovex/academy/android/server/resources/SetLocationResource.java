@@ -17,9 +17,8 @@ import de.inovex.academy.android.server.dao.UserLocationManager;
 import de.inovex.academy.android.server.dto.UserLocation;
 
 @Path("/setlocation")
-
 public class SetLocationResource {
-	
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -27,7 +26,7 @@ public class SetLocationResource {
 		System.err.println(jsonLoc);
 		Gson gson = new Gson();
 		UserLocation userLocation = gson.fromJson(jsonLoc, UserLocation.class);
-//todo:save
+		// todo:save
 		DatabaseConnection con = new DatabaseConnection();
 		Connection conn = con.connect();
 		UserLocationManager userLocationManager = new UserLocationManager(conn);
@@ -35,6 +34,9 @@ public class SetLocationResource {
 			userLocationManager.saveOrUpdate(userLocation);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return Response.ok(
+					"Error - Set Set User Location: " + e.getStackTrace(),
+					"text/plain").build();
 		}
 		return Response.ok("Success - Set User Location", "text/plain").build();
 	}

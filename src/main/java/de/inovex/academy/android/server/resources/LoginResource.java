@@ -12,7 +12,7 @@ import de.inovex.academy.android.server.dto.Session;
 
 @Path("/login")
 public class LoginResource {
-	
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -20,11 +20,11 @@ public class LoginResource {
 		System.err.println(jsonCred);
 		Gson gson = new Gson();
 		User cred = gson.fromJson(jsonCred, User.class);
-		
+
 		System.out.println(cred.getLogin());
 		Session session = new Session();
 		session.setId("sehr_lange_id");
-		
+
 		return gson.toJson(session);
 	}
 }
