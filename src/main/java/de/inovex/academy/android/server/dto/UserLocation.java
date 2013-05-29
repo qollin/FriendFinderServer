@@ -24,4 +24,9 @@ public class UserLocation {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	@Override
+	public String toString() {
+		return user + " (" + latitude + ", " + longitude + ")";
+	}
 }
