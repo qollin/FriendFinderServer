@@ -56,6 +56,20 @@ public class DTOManager {
 		
 		return result;
 	}
+
+	protected void executeStatement(String statement, String... params)
+			throws SQLException {
+				PreparedStatement stmt = null;
+				try {
+					stmt = conn.prepareStatement(statement);
+					for (int i = 0; i < params.length; i++) {
+						stmt.setString(i + 1, params[i]);
+					}
+					stmt.execute();
+				} finally {
+					cleanup(stmt);
+				}
+			}
 	
 
 	
