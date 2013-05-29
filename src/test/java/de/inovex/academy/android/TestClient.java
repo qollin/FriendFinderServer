@@ -20,10 +20,14 @@ import com.google.gson.Gson;
 
 import de.inovex.academy.android.server.dto.User;
 import de.inovex.academy.android.server.dto.Session;
+import de.inovex.academy.android.server.dto.UserLocation;
 
 public class TestClient {
 	private static final String urlPrefix = "http://localhost:9998/";
 	private static final String user = "testuser";
+	private static final String latitude = "50.967052";
+	private static final String longitude = "7.014019";
+	
 	private Gson gson = new Gson();
 
 	private Object postRequest(String verb, Object parameter) throws ClientProtocolException, IOException {
@@ -37,7 +41,7 @@ public class TestClient {
 			try {
 				StringWriter writer = new StringWriter();
 				IOUtils.copy(instream, writer, "UTF-8");
-				return gson.fromJson(writer.toString(), Session.class);
+				return gson.fromJson(writer.toString(), UserLocation.class);
 			} finally {
 				instream.close();
 			}
@@ -56,13 +60,19 @@ public class TestClient {
 	
 	public static void main(String[] args) {
 		User cred = new User();
-		cred.setLogin(user);	
+		cred.setLogin(user);
+		UserLocation loc = new UserLocation();
+		loc.setLatitude(latitude);
+		loc.setLongitude(longitude);
 		
 		TestClient client = new TestClient();
 		
 		try {
-			Session session = (Session)client.postRequest("login", cred);
-			System.out.println(session.getId());
+//			Session session = (Session)client.postRequest("login", cred);
+			loc = (UserLocation)client.postRequest("user", latitude);
+			loc = (UserLocation)client.postRequest("user", longitude);
+			System.out.println(loc.getLatitude() + ", " + loc.getLongitude());
+//			System.out.println(session.getId());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

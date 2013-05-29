@@ -5,7 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
-import de.inovex.academy.android.server.dto.UserLocation;
+import de.inovex.academy.android.server.dto.UserProfilePicture;
 
 @Path("/getalluserwithprofilepicture")
 
@@ -16,7 +16,8 @@ public class GetAllUserWithProfilePictureResource {
 	
 	public String getMessage() {
 		Gson gson = new Gson();
-		UserLocation loc = new UserLocation();
-		return gson.toJson(loc);
+		UserProfilePicture pic = new UserProfilePicture();
+//select
+		return gson.toJson(pic);
 	}
 }

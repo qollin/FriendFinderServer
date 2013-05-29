@@ -46,7 +46,6 @@ public class UserLocationManager extends DTOManager {
 		} finally {
 			cleanup(stmt, rs);
 		}
-		
 		return userLocationList;
 	}
 
