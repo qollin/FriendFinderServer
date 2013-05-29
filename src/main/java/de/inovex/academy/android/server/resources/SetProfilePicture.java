@@ -36,14 +36,10 @@ public class SetProfilePicture {
 			userProfilePictureManager.saveOrUpdate(pic);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return Response.ok(
-					"Error - Set Profile Picture: " + e.getStackTrace(),
-					"text/plain").build();
+			return Response.serverError().build();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return Response.ok(
-					"Error - Set Profile Picture: " + e.getStackTrace(),
-					"text/plain").build();
+			return Response.serverError().build();
 		}
 		return Response.ok("Success - Set Profile Picture", "text/plain")
 				.build();

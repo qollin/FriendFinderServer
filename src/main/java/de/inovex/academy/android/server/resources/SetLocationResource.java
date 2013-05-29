@@ -34,9 +34,7 @@ public class SetLocationResource {
 			userLocationManager.saveOrUpdate(userLocation);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return Response.ok(
-					"Error - Set Set User Location: " + e.getStackTrace(),
-					"text/plain").build();
+			return Response.serverError().build();
 		}
 		return Response.ok("Success - Set User Location", "text/plain").build();
 	}

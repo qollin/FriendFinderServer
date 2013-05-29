@@ -30,10 +30,7 @@ public class GetAllUserLocationResource {
 		UserLocationManager userLocationManager = new UserLocationManager(conn);
 		try {
 			List<UserLocation> userLocationList = userLocationManager
-					.getAllUserLocations();
-			// For testing
-			DBTestClient tc = new DBTestClient();
-			tc.printList(userLocationList);
+					.getAllUserLocations();	
 			return gson.toJson(userLocationList);
 		} catch (SQLException e) {
 			e.printStackTrace();

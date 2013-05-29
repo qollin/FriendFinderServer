@@ -30,7 +30,7 @@ public class TestClient {
 	
 	private Gson gson = new Gson();
 
-	private Object postRequest(String verb, Object parameter) throws ClientProtocolException, IOException {
+	private Object postRequest(String verb, Object parameter, Class clazz) throws ClientProtocolException, IOException {
 		HttpPost request = createRequest(verb, parameter);
 
 		HttpClient httpclient = new DefaultHttpClient();
@@ -41,7 +41,7 @@ public class TestClient {
 			try {
 				StringWriter writer = new StringWriter();
 				IOUtils.copy(instream, writer, "UTF-8");
-				return gson.fromJson(writer.toString(), UserLocation.class);
+				return gson.fromJson(writer.toString(), clazz);
 			} finally {
 				instream.close();
 			}
@@ -68,11 +68,10 @@ public class TestClient {
 		TestClient client = new TestClient();
 		
 		try {
-//			Session session = (Session)client.postRequest("login", cred);
-			loc = (UserLocation)client.postRequest("user", latitude);
-			loc = (UserLocation)client.postRequest("user", longitude);
+			Session session = (Session)client.postRequest("login", cred, Session.class);
+			client.postRequest("setuserlocation", loc, String.class);
 			System.out.println(loc.getLatitude() + ", " + loc.getLongitude());
-//			System.out.println(session.getId());
+			System.out.println(session.getId());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
