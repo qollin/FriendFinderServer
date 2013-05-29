@@ -26,9 +26,12 @@ public class SetLocationResource {
 		System.err.println(jsonLoc);
 		Gson gson = new Gson();
 		UserLocation userLocation = gson.fromJson(jsonLoc, UserLocation.class);
+		System.err.println(userLocation.getUser());
 		// todo:save
+		
 		DatabaseConnection con = new DatabaseConnection();
 		Connection conn = con.connect();
+		System.err.println(conn);
 		UserLocationManager userLocationManager = new UserLocationManager(conn);
 		try {
 			userLocationManager.saveOrUpdate(userLocation);

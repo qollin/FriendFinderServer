@@ -13,7 +13,7 @@ import de.inovex.academy.android.server.dto.User;
 import de.inovex.academy.android.server.dto.UserLocation;
 import de.inovex.academy.android.server.dto.UserProfilePicture;
 
-public class DBTestClient {
+public class DBTestClient extends TestBase{
 	private static User user = createUser();
 	
 	
@@ -64,11 +64,5 @@ public class DBTestClient {
 		profile.setProfilePicture(new byte[]{1,2,3,4,5,6,7,8,9});
 		
 		manager.saveOrUpdate(profile);
-	}
-	
-	public static void printList(@SuppressWarnings("rawtypes") List l) {
-		for (Object o : l) {
-			System.out.println(o);
-		}
 	}
 }
