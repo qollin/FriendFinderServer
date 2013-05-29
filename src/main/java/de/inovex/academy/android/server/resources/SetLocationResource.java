@@ -5,28 +5,24 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
-
 import de.inovex.academy.android.server.dto.User;
-import de.inovex.academy.android.server.dto.Session;
+import de.inovex.academy.android.server.dto.UserLocation;
 
-@Path("/login")
-public class LoginResource {
+@Path("/setlocation")
+
+public class SetLocationResource {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String getMessage(String jsonCred) {
-		System.err.println(jsonCred);
+	public Response getMessage(String jsonLoc) {
 		Gson gson = new Gson();
-		User cred = gson.fromJson(jsonCred, User.class);
-		
-		System.out.println(cred.getLogin());
-		Session session = new Session();
-		session.setId("sehr_lange_id");
-		
-		return gson.toJson(session);
+		gson.fromJson(jsonLoc, UserLocation.class);
+//todo:save
+		return Response.ok("Success - Set User Location", "text/plain").build();
 	}
 }
