@@ -1,7 +1,6 @@
 package de.inovex.academy.android.server.dto;
 
 public class UserProfilePicture {
-
 	private byte[] profilePicture;
 	private User user;
 
@@ -16,5 +15,10 @@ public class UserProfilePicture {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	@Override
+	public String toString() {
+		return user + ": " + profilePicture.length + " bytes in profile picture"; 
 	}
 }
