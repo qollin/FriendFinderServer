@@ -1,9 +1,13 @@
 package de.inovex.academy.android;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
@@ -18,12 +22,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.Gson;
-
-import de.inovex.academy.android.server.dto.User;
-import de.inovex.academy.android.server.dto.Session;
-import de.inovex.academy.android.server.dto.UserLocation;
-import java.io.*;
-import java.net.*;
 
 public class TestClient extends TestBase {
 	private static final String urlPrefix = "http://localhost:9998/";

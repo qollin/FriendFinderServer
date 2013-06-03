@@ -1,16 +1,15 @@
 package de.inovex.academy.android.server.dao;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 
 import de.inovex.academy.android.server.dto.User;
 import de.inovex.academy.android.server.dto.UserProfilePicture;
@@ -59,8 +58,8 @@ public class UserProfilePictureManager extends DTOManager {
 
 	private void readProfilePictureInto(UserProfilePicture profile,
 			String filename) throws IOException {
-		Path path = createPath(filename);
-		byte[] profilePicture = Files.readAllBytes(path);
+		File path = createPath(filename);
+		byte[] profilePicture = FileUtils.readFileToByteArray(path);
 		profile.setProfilePicture(profilePicture);
 	}
 	
@@ -87,13 +86,12 @@ public class UserProfilePictureManager extends DTOManager {
 
 	private void writeFile(UserProfilePicture profile, String filename)
 			throws IOException {
-		Path path = createPath(filename);
-		Files.write(path, profile.getProfilePicture(), StandardOpenOption.CREATE);
+		File path = createPath(filename);
+		FileUtils.writeByteArrayToFile(path, profile.getProfilePicture());
 	}
 
-	private Path createPath(String filename) {
-		Path path = FileSystems.getDefault().getPath(PICTURE_DIR, filename);
-		return path;
+	private File createPath(String filename) {
+		return new File(PICTURE_DIR + File.separator + filename);
 	}
 
 	private String createFilename(UserProfilePicture profile) {
