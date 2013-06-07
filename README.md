@@ -2,7 +2,7 @@
 
 To start the Android Training server, simply run
 
-  mvn java:exec
+  mvn exec:java
 
 To test the server navigate to 
 
