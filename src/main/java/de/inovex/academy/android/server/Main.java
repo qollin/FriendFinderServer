@@ -2,6 +2,7 @@ package de.inovex.academy.android.server;
 
 import java.io.IOException;
 import java.net.URI;
+import java.sql.SQLException;
 
 import javax.ws.rs.core.UriBuilder;
 
@@ -25,12 +26,21 @@ public class Main {
 		return GrizzlyServerFactory.createHttpServer(BASE_URI, rc);
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
+		if (args.length > 0 &&
+			"sample".equals(args[0])) {
+			createSampleData();
+		}
+		
 		HttpServer httpServer = startServer();
 		System.out.println(String.format("Jersey app started with WADL available at "
 								+ "%sapplication.wadl\nTry out %shelloworld\nHit enter to stop it...",
 								BASE_URI, BASE_URI));
 		System.in.read();
 		httpServer.stop();
+	}
+
+	private static void createSampleData() throws ClassNotFoundException, SQLException, IOException {
+		new SampleData().create();
 	}
 }

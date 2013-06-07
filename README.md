@@ -4,6 +4,10 @@ To start the Android Training server, simply run
 
   mvn exec:java
 
+To start the server and have it create sample data initially, run
+
+  mvn exec:java -Dexec.args="sample"
+
 To test the server navigate to 
 
   http://localhost:9998/helloworld
