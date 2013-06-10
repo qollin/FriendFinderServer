@@ -24,7 +24,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import com.google.gson.Gson;
 
 public class TestClient extends TestBase {
-	private static final String urlPrefix = "http://localhost:9998/";
+	private static final String urlPrefix = "http://ec2-50-17-60-135.compute-1.amazonaws.com:9998/";
 	private static final String login = "testuser";
 	private static final String latitude = "50.967052";
 	private static final String longitude = "7.014019";

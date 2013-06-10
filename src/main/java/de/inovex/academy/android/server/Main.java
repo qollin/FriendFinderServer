@@ -14,7 +14,7 @@ import com.sun.jersey.api.core.ResourceConfig;
 
 public class Main {
 	private static URI getBaseURI() {
-		return UriBuilder.fromUri("http://localhost/").port(9998).build();
+		return UriBuilder.fromUri("http://ec2-50-17-60-135.compute-1.amazonaws.com/").port(9998).build();
 	}
 
 	public static final URI BASE_URI = getBaseURI();
