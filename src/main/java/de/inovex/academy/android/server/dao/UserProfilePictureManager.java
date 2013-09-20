@@ -77,6 +77,13 @@ public class UserProfilePictureManager extends DTOManager {
 		writeFile(profile, filename);
 	}
 
+	public void deleteUserProfilePicture(String username) throws SQLException, IOException {
+		executeStatement("DELETE FROM "+TABLENAME+" WHERE login =?", username);
+		File file = createPath(username+".dat");
+		if(file.exists())
+			file.delete();
+	}
+	
 	private void insertProfilePicture(UserProfilePicture profile) throws SQLException, IOException {
 		String filename = createFilename(profile); 
 		executeStatement("INSERT into " + TABLENAME + " (login, filename) VALUES (?,?)", profile.getUser().getLogin(), filename);

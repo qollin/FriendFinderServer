@@ -23,22 +23,22 @@ public class SetLocationResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getMessage(String jsonLoc) {
-		System.err.println(jsonLoc);
+		System.err.println("Got locationstring: "+ jsonLoc);
 		Gson gson = new Gson();
 		UserLocation userLocation = gson.fromJson(jsonLoc, UserLocation.class);
-		System.err.println(userLocation.getUser());
-		// todo:save
-		
+		System.err.println("Serialized to: "+userLocation.getUser());
+		// todo:save		
 		DatabaseConnection con = new DatabaseConnection();
 		Connection conn = con.connect();
-		System.err.println(conn);
+		System.err.println("DB Connection: "+conn);
 		UserLocationManager userLocationManager = new UserLocationManager(conn);
 		try {
 			userLocationManager.saveOrUpdate(userLocation);
+			System.err.println("Saved!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return Response.serverError().build();
-		}
+		}		
 		return Response.ok("Success - Set User Location", "text/plain").build();
 	}
 }

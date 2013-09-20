@@ -43,7 +43,7 @@ public class DBTestClient extends TestBase{
 
 	private static User createUser() {
 		User user = new User();
-		user.setLogin("collin");
+		user.setLogin("Timm9");
 		return user;
 	}
 
@@ -51,8 +51,8 @@ public class DBTestClient extends TestBase{
 			throws SQLException {
 		UserLocation userLocation = new UserLocation();
 		userLocation.setUser(user);
-		userLocation.setLatitude("43");
-		userLocation.setLongitude("41");
+		userLocation.setLatitude("52");
+		userLocation.setLongitude("9");
 		
 		manager.saveOrUpdate(userLocation);
 	}

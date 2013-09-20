@@ -25,6 +25,9 @@ public class UserLocationManager extends DTOManager {
 		}
 	}
 	
+	
+	
+	
 	public List<UserLocation> getAllUserLocations() throws SQLException {
 		List<UserLocation> userLocationList = new ArrayList<UserLocation>();
 		PreparedStatement stmt = null;
@@ -56,6 +59,10 @@ public class UserLocationManager extends DTOManager {
 		return userLocation;
 	}
 
+	public void deleteUserLocation(String username) throws SQLException {
+		executeStatement("DELETE FROM "+TABLENAME+" WHERE login = ?", username);
+	}
+	
 	private void updateUserLocation(UserLocation userLocation) throws SQLException {
 		executeStatement("UPDATE " + TABLENAME + " SET latitude = ?, longitude = ? WHERE login = ?", userLocation.getLatitude(), userLocation.getLongitude(), userLocation.getUser().getLogin());
 	}
@@ -63,5 +70,6 @@ public class UserLocationManager extends DTOManager {
 	private void insertUserLocation(UserLocation userLocation) throws SQLException {
 		executeStatement("INSERT INTO " + TABLENAME + " (login, latitude, longitude) VALUES (?,?,?)", userLocation.getUser().getLogin(), userLocation.getLatitude(), userLocation.getLongitude());
 	}
+	
 
 }

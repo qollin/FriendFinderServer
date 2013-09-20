@@ -27,6 +27,7 @@ public class SetProfilePicture {
 		UserProfilePicture pic = gson.fromJson(jsonImage,
 				UserProfilePicture.class);
 
+		System.err.println("got picture for user: "+ pic.getUser().getLogin()+ " length: "+pic.getProfilePicture().length);
 		DatabaseConnection con = new DatabaseConnection();
 		Connection conn = con.connect();
 		UserProfilePictureManager userProfilePictureManager = new UserProfilePictureManager(
