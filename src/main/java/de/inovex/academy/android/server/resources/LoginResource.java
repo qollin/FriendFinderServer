@@ -21,6 +21,7 @@ public class LoginResource {
 		Gson gson = new Gson();
 		User cred = gson.fromJson(jsonCred, User.class);
 
+		System.out.println(jsonCred);
 		System.out.println(cred.getLogin());
 		Session session = new Session();
 		session.setId("sehr_lange_id");
